@@ -53,13 +53,29 @@ export function linkedList(){
             return current
         },
         at(index){
-
+            
         },
         pop(){
-
+            if(this.listHead===null){   
+                return undefined
+            }
+            this.listHead=this.listHead.nextNode
         },
         contains(value){
-
+            if(this.listHead===null){   
+                return false
+            }
+            let current=this.listHead
+            while(current.nextNode!==null){
+                if(current.value===value){
+                    return true
+                }
+                current=current.nextNode
+                if(current.value===value){
+                    return true
+                }
+            }
+            return false
         },
         findIndex(value){
 

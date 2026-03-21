@@ -10,4 +10,7 @@ list1.append('Fire')
 
 console.log(list1.size())
 console.log(list1.head())
+console.log(list1.tail())
+console.log(list1.contains('Fire'))
+
 console.log(list1.toString())
