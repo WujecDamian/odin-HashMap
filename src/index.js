@@ -8,4 +8,6 @@ list1.append('Oxygen')
 list1.append('Water')
 list1.append('Fire')
 
+console.log(list1.size())
+
 console.log(list1.toString())

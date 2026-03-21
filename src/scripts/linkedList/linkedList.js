@@ -22,10 +22,25 @@ export function linkedList(){
 
         },
         size(){
+            let size=1
+            if(this.listHead===null){
+                size=0
+                return size
+            }
+            let current=this.listHead
 
+             while(current.nextNode!==null){
+                current=current.nextNode
+                size++
+            }
+            return size
         },
         head(){
-
+            if(this.listHead===null){   
+                return undefined
+            }
+            let current=this.listHead
+            return current
         },
         tail(){
 
