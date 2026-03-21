@@ -43,7 +43,14 @@ export function linkedList(){
             return current
         },
         tail(){
-
+            if(this.listHead===null){   
+                return undefined
+            }
+            let current=this.listHead
+            while(current.nextNode!==null){
+                current=current.nextNode
+            }
+            return current
         },
         at(index){
 

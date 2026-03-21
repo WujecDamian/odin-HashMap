@@ -9,5 +9,5 @@ list1.append('Water')
 list1.append('Fire')
 
 console.log(list1.size())
-
+console.log(list1.head())
 console.log(list1.toString())
