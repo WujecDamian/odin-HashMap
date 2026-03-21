@@ -5,6 +5,7 @@ import { linkedList } from './scripts/linkedList/linkedList.js'
 let list1=linkedList()
 
 list1.append('Oxygen')
+list1.append('Water')
+list1.append('Fire')
 
-
-list1.toString()
+console.log(list1.toString())

@@ -2,23 +2,21 @@ import { node } from "./node.js";
 
 export function linkedList(){
     return{
-        head:null,
+        listHead:null,
+        tail:null,
+        size:null,
         append(value){
             let newnode=node(value)
-            console.log(newnode)
-            if(this.head===null){
-                this.head=newnode
+            if(this.listHead===null){
+                this.listHead=newnode
                 return
             }
-            else{
-                console.log(JSON.stringify(this.head))
-                console.log('cipka')
-            }
-            let current=this.head
+
+            let current=this.listHead
             while(current.nextNode!==null){
                 current=current.nextNode
             }
-            return current=newnode
+            current.nextNode=newnode
         },
         prepend(value){
 
@@ -46,12 +44,17 @@ export function linkedList(){
         },
         toString(){
             let result=''
-            let current=this.head
+            if(this.listHead===null){
+            return result
+            }
+            let current=this.listHead
             while(current.nextNode!==null){
-                result+=` ( ${current} ) -> `
+                result+=`( ${current.value} ) -> `
                 current=current.nextNode
             }
-            return result
+            result+=`( ${current.value} ) -> `
+
+            return result+"null"
         }
 
     }
