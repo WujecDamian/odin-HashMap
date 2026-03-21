@@ -53,7 +53,18 @@ export function linkedList(){
             return current
         },
         at(index){
-            
+            if(this.listHead===null){   
+                return undefined
+            }
+            let current=this.listHead
+            let i
+            for(i=0;i<index;i++){
+                if(current.nextNode!==null){
+                    current=current.nextNode
+                }
+                else return
+            }
+            return current.value
         },
         pop(){
             if(this.listHead===null){   
@@ -78,7 +89,27 @@ export function linkedList(){
             return false
         },
         findIndex(value){
+            if(this.listHead===null){   
+                return -1
+            }
+            let current=this.listHead
+            let i
+            for(i=0;i<this.size();i++){
+                if(current.nextNode!==null){
+                    if(current.value===value){
+                        return i
+                    }
+                    else if(current.nextNode.value===value){
+                        return i+1
+                    }
+                    current=current.nextNode
 
+                }
+                else{
+                    return -1
+                }
+            }
+            return current.value
         },
         toString(){
             let result=''
