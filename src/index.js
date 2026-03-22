@@ -6,3 +6,5 @@ import { hashMap } from './scripts/hashMap.js'
 let hashMap1=hashMap()
 
 hashMap1.set('Stop','Box')
+hashMap1.set('Bandi','Crazy')
+hashMap1.set('Stop','Achtung')

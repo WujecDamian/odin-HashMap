@@ -11,16 +11,22 @@ export function hashMap () {
     },
     set (key, value) {
       const hashedKey=this.hash(key)
+      let wasInside=false
       const obj={
         key,
         value
       }
+      this.arr[hashedKey].forEach(element => {
+        if(element.key===key){
+          element.value=value
+          wasInside=true
+        }    
+      });
+      if(!wasInside){
       this.arr[hashedKey].push(obj)
-      console.log(hashedKey)
-      console.log(obj)
-
+      }
       console.log(this.arr[hashedKey])
-      console.log(value)
+      
     },
     
   }
