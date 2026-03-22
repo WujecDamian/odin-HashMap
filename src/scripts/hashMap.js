@@ -1,6 +1,8 @@
+import { linkedList } from './linkedList/linkedList.js'
+
 export function hashMap () {
   return {
-    bucket: new Array(this.capacity),
+    bucket: createArray(this.capacity),
     loadFactor: 0.75,
     capacity: 16,
     hash (key) {
@@ -8,8 +10,14 @@ export function hashMap () {
       return murmur.murmur3(key, 0)%this.bucket.length
     },
     set (key, value) {
-      if (this.bucket[key]) {
-      }
+      this.bucket[key]
+    },
+    createArray(capacity){
+      let arr=new Array(capacity)
+      arr.forEach(element => {
+        element=linkedList()
+      });
+      return arr
     }
   }
 }
