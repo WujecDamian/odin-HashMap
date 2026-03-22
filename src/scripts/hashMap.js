@@ -95,9 +95,6 @@ export function hashMap() {
     },
     showArrayTEST() {
       console.log(this.arr);
-      this.arr.forEach((element) => {
-        console.log(element);
-      });
     },
   };
 }
