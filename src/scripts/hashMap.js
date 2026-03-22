@@ -4,7 +4,7 @@ export function hashMap() {
   return {
     loadFactor: 0.75,
     capacity: 16,
-    arr: new Array(16).fill([]),
+    arr: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
     hash(key) {
       return murmur.murmur3(key, 0) % this.arr.length;
     },
@@ -79,7 +79,9 @@ export function hashMap() {
       return length;
     },
     clear() {
-      this.arr = new Array(this.capacity).fill([]);
+      this.arr.forEach((el) => {
+        el.splice(0);
+      });
     },
     keys() {
       let keys = [];
@@ -92,6 +94,7 @@ export function hashMap() {
       return keys;
     },
     showArrayTEST() {
+      console.log(this.arr);
       this.arr.forEach((element) => {
         console.log(element);
       });
