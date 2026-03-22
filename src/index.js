@@ -5,4 +5,4 @@ import { hashMap } from './scripts/hashMap.js'
 
 let hashMap1=hashMap()
 
-hashMap1.set('Box','Stop')
+hashMap1.set('Stop','Box')
