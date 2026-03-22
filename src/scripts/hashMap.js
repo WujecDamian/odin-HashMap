@@ -1,4 +1,3 @@
-import { linkedList } from "./linkedList/linkedList.js";
 import { createArray } from "./buckets/createArray.js";
 import murmur from "murmurhash-js";
 export function hashMap() {
@@ -56,6 +55,46 @@ export function hashMap() {
         });
       });
       return wasInside;
+    },
+    remove(key) {
+      const hashedKey = this.hash(key);
+      let wasInside = false;
+
+      this.arr[hashedKey].forEach((element, i) => {
+        if (element.key === key) {
+          wasInside = true;
+          this.arr[hashedKey].splice(i, 1);
+        }
+      });
+      return wasInside ? true : false;
+    },
+    length() {
+      let length = 0;
+
+      this.arr.forEach((bucket) => {
+        bucket.forEach((element) => {
+          length++;
+        });
+      });
+      return length;
+    },
+    clear() {
+      this.arr = new Array(this.capacity).fill([]);
+    },
+    keys() {
+      let keys = [];
+
+      this.arr.forEach((bucket) => {
+        bucket.forEach((element) => {
+          if (element.key != undefined) keys.push(element.key);
+        });
+      });
+      return keys;
+    },
+    showArrayTEST() {
+      this.arr.forEach((element) => {
+        console.log(element);
+      });
     },
   };
 }
