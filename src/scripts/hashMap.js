@@ -1,24 +1,22 @@
 import { linkedList } from './linkedList/linkedList.js'
-
+import { createArray } from './buckets/createArray.js'
+import murmur from 'murmurhash-js'
 export function hashMap () {
+  let capacity= 16
   return {
-    bucket: createArray(this.capacity),
     loadFactor: 0.75,
-    capacity: 16,
+    bucket: createArray(capacity),
     hash (key) {
-      const murmur = require('murmurhash-js')
       return murmur.murmur3(key, 0)%this.bucket.length
     },
     set (key, value) {
-      this.bucket[key]
+      const hashedKey=this.hash(key)
+      let bucket=this.bucket[hashedKey]
+      console.log(bucket)
+      console.log(hashedKey)
+      console.log(value)
     },
-    createArray(capacity){
-      let arr=new Array(capacity)
-      arr.forEach(element => {
-        element=linkedList()
-      });
-      return arr
-    }
+    
   }
 }
 
