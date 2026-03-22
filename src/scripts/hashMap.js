@@ -1,35 +1,63 @@
-import { linkedList } from './linkedList/linkedList.js'
-import { createArray } from './buckets/createArray.js'
-import murmur from 'murmurhash-js'
-export function hashMap () {
+import { linkedList } from "./linkedList/linkedList.js";
+import { createArray } from "./buckets/createArray.js";
+import murmur from "murmurhash-js";
+export function hashMap() {
   return {
     loadFactor: 0.75,
-    capacity:16,
+    capacity: 16,
     arr: new Array(16).fill([]),
-    hash (key) {
-      return murmur.murmur3(key, 0)%this.arr.length
+    hash(key) {
+      return murmur.murmur3(key, 0) % this.arr.length;
     },
-    set (key, value) {
-      const hashedKey=this.hash(key)
-      let wasInside=false
-      const obj={
+    set(key, value) {
+      const hashedKey = this.hash(key);
+      let wasInside = false;
+      const obj = {
         key,
-        value
-      }
-      this.arr[hashedKey].forEach(element => {
-        if(element.key===key){
-          element.value=value
-          wasInside=true
-        }    
+        value,
+      };
+      this.arr[hashedKey].forEach((element) => {
+        if (element.key === key) {
+          element.value = value;
+          wasInside = true;
+        }
       });
-      if(!wasInside){
-      this.arr[hashedKey].push(obj)
+      if (!wasInside) {
+        this.arr[hashedKey].push(obj);
       }
-      console.log(this.arr[hashedKey])
-      
+      console.log(this.arr[hashedKey]);
+      // * TODO: Check if array is not overloaded - if it is
     },
-    
-  }
+    get(key) {
+      const hashedKey = this.hash(key);
+      let wasInside = false;
+      let foundElement;
+
+      this.arr[hashedKey].forEach((element) => {
+        if (element.key === key) {
+          wasInside = true;
+          foundElement = element.value;
+        }
+      });
+      if (!wasInside) {
+        return null;
+      } else {
+        return foundElement;
+      }
+    },
+    has(key) {
+      let wasInside = false;
+
+      this.arr.forEach((bucket) => {
+        bucket.forEach((element) => {
+          if (element.key === key) {
+            wasInside = true;
+          }
+        });
+      });
+      return wasInside;
+    },
+  };
 }
 
 /*
