@@ -4,7 +4,7 @@ export function hashMap() {
   return {
     loadFactor: 0.75,
     capacity: 16,
-    arr: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
+    arr: Array.from({ length: 16 }, () => []),
     hash(key) {
       return murmur.murmur3(key, 0) % this.arr.length;
     },
@@ -24,8 +24,8 @@ export function hashMap() {
       if (!wasInside) {
         this.arr[hashedKey].push(obj);
       }
-      console.log(this.arr[hashedKey]);
       // * TODO: Check if array is not overloaded - if it is
+      this.isOverLoaded();
     },
     get(key) {
       const hashedKey = this.hash(key);
@@ -108,13 +108,29 @@ export function hashMap() {
       this.arr.forEach((bucket) => {
         bucket.forEach((element) => {
           if (element.key != undefined)
-            entries.push([`${element.key}, ${element.value}`]);
+            entries.push([`${element.key},${element.value}`]);
         });
       });
       return entries;
     },
     showArrayTEST() {
       console.log(this.arr);
+    },
+    isOverLoaded() {
+      let items = this.keys().length;
+      let population = items / this.capacity;
+
+      if (population > this.loadFactor) {
+        //double the capacity and create new array with old entries somehow kept but recalled ????
+        this.capacity *= 2;
+        const entries = this.entries();
+        this.arr = Array.from({ length: this.capacity }, () => []);
+        entries.forEach((entry) => {
+          let splitEntry = JSON.stringify(entry).split(",");
+          this.set(splitEntry[0], splitEntry[1]);
+        });
+        console.log("Array overloaded, capacity increased to " + this.capacity);
+      }
     },
   };
 }
