@@ -12,5 +12,5 @@ console.log(hashMap1.has("Stop"));
 console.log(hashMap1.remove("Nonexistentobject"));
 console.log(hashMap1.keys());
 console.log(hashMap1.values());
-
+console.log(hashMap1.entries());
 hashMap1.showArrayTEST();
