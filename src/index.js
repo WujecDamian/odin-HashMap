@@ -11,4 +11,6 @@ console.log(hashMap1.get("Bandi"));
 console.log(hashMap1.has("Stop"));
 console.log(hashMap1.remove("Nonexistentobject"));
 console.log(hashMap1.keys());
+console.log(hashMap1.values());
+
 hashMap1.showArrayTEST();

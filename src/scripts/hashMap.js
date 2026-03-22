@@ -93,6 +93,16 @@ export function hashMap() {
       });
       return keys;
     },
+    values() {
+      let values = [];
+
+      this.arr.forEach((bucket) => {
+        bucket.forEach((element) => {
+          if (element.value != undefined) values.push(element.value);
+        });
+      });
+      return values;
+    },
     showArrayTEST() {
       console.log(this.arr);
     },
